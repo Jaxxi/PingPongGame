@@ -3,6 +3,7 @@ import java.awt.*;
 public class Human implements Pad {
         double y, yVel;
         boolean wAccel, sAccel;
+        final double GRAVITY = 0.94;
         int player, x;
 
         public Human(int player){
@@ -20,14 +21,20 @@ public class Human implements Pad {
 
     public void move() {
         if(wAccel){
-
+            yVel -= 2;
         }
         else if(sAccel){
-
+            yVel += 2;
         }
         else if(!wAccel && !sAccel){
-
+            yVel *= GRAVITY;
         }
+        if(yVel >= 5)
+            yVel = 5;
+        else if(yVel <= -5)
+            yVel = -5;
+
+        y += yVel;
     }
 
     public void setwAccel(boolean input){
